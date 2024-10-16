@@ -1,6 +1,6 @@
 @library_reservationAPI_HostAddress = http://localhost:5144
 
-GET {{library_reservationAPI_HostAddress}}/weatherforecast/
+GET {{library_reservationAPI_HostAddress}}/api/books
 Accept: application/json
 
 ###

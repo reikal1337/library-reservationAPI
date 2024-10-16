@@ -11,7 +11,7 @@ namespace library_reservationAPI.Entities
 
         public int Year { get; set; }
 
-        public string Type {  get; set; }
+        public string[] Type {  get; set; }
 
 
 
