@@ -32,5 +32,7 @@ namespace library_reservationAPI.Db
             
 
         }
+        public DbSet<library_reservationAPI.Entities.ReservationItem> ReservationItem { get; set; } = default!;
+        public DbSet<library_reservationAPI.Entities.Reservation> Reservation { get; set; } = default!;
     }
 }
