@@ -25,6 +25,18 @@ builder.Services.AddControllers(option =>
 ).ConfigureApiBehaviorOptions(BadRequestsBahavior.Parse);
 
 
+//CORS config
+builder.Services.AddCors(options =>
+{
+    var frontendUrl = builder.Configuration.GetValue<string>("FrontendUrl");
+    options.AddDefaultPolicy(builder => 
+    { 
+        builder.WithOrigins(frontendUrl).AllowAnyMethod().AllowAnyHeader();
+    });
+});
+
+
+
 var app = builder.Build();
 
 
@@ -40,6 +52,8 @@ await seeder.Seed();
 // Configure the HTTP request pipeline.
 
 app.UseHttpsRedirection();
+app.UseRouting();
+app.UseCors();
 
 app.UseAuthorization();
 
