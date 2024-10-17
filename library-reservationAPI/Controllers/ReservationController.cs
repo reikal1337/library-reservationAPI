@@ -1,11 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using library_reservationAPI.Db;
+
 using library_reservationAPI.Entities;
 using library_reservationAPI.DTOs;
 using library_reservationAPI.Helpers;
-using library_reservation.Application.Book;
-using library_reservation.Application.Reservation;
+
+using library_reservation.Application;
 
 namespace library_reservationAPI.Controllers
 {
@@ -13,22 +12,24 @@ namespace library_reservationAPI.Controllers
     [ApiController]
     public class ReservationController : ControllerBase
     {
-        private readonly IBookService bookService;
+        public IReservationService reservationService;
 
-        public ReservationController(IBookService bookService)
+
+        public ReservationController(IReservationService reservationService)
         {
-            this.bookService = bookService;
+            this.reservationService = reservationService;
         }
+
 
         [HttpGet]
         public async Task<ActionResult<List<Book>>> Get([FromQuery] PaginationDTO paginationDTO)
         {
-            var (books, totalRecords) = await bookService.GetPaginatedBooks(paginationDTO);
+            var ( reservations, totalRecords) = await reservationService.GetPaginatedReservations(paginationDTO);
 
             // Inserting pagination details in the header
             await HttpContext.InsertParametersPaginationInHeader(totalRecords.ToString());
 
-            return Ok(books);
+            return Ok(reservations);
         }
 
     }

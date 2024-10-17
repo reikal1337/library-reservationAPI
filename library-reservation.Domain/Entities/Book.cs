@@ -2,18 +2,19 @@
 
 namespace library_reservationAPI.Entities
 {
-    public class Book
-    {
-        public int Id { get; set; }
-        public string Name { get; set; } = default!;
-
-        public string ImageSrc { get; set; } = default!;
-
-        public int Year { get; set; }
-
-        public string[] Type {  get; set; } = default!;
+    
+       
 
 
+        public class Book
+        {
+            public int Id { get; set; }
+            public string Name { get; set; } = default!;
+            public string ImageSrc { get; set; } = default!;
+            public int Year { get; set; }
+            public ICollection<string> Types { get; set; } = new List<string>();
+        }
 
-    }
+
+    
 }

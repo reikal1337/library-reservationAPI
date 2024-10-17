@@ -4,8 +4,8 @@ using library_reservationAPI.Db;
 using library_reservationAPI.Entities;
 using library_reservationAPI.DTOs;
 using library_reservationAPI.Helpers;
-using library_reservation.Application.Book;
-using library_reservation.Application.Reservation;
+using library_reservation.Application;
+
 
 namespace library_reservationAPI.Controllers
 {

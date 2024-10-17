@@ -3,7 +3,6 @@ using library_reservation.Infrastructure.Repositories;
 using library_reservation.Infrastructure.Seeders;
 using NET_core_api_tut.Filters;
 using NET_core_api_tut.APIBehavior;
-using library_reservation.Application.Reservation;
 using library_reservation.Application;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,8 +13,10 @@ builder.Services.AddInfrastructure(builder.Configuration);
 
 
 builder.Services.AddScoped<IBookService, BookService>();
-builder.Services.AddScoped<IReservationRepository, BookRepository>();
+builder.Services.AddScoped<IBookRepository, BookRepository>();
 
+builder.Services.AddScoped<IReservationService, ReservationService>();
+builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
 
 builder.Services.AddControllers(option =>
     {

@@ -17,6 +17,19 @@ namespace library_reservationAPI.Db
 
             //modelBuilder.Entity<ReservationItem>().OwnsOne(x => x.Book);
 
+            modelBuilder.Entity<Reservation>()
+                .HasMany(r => r.ReservationItems)
+                .WithOne()
+                .HasForeignKey("ReservationId");
+
+            modelBuilder.Entity<ReservationItem>()
+                .HasOne<Book>()
+                .WithMany()
+                .HasForeignKey(ri => ri.BookId);
+;
+
+
+
             modelBuilder.Entity<Reservation>().HasMany(x => x.ReservationItems);
 
             
