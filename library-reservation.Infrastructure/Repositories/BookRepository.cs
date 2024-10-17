@@ -18,7 +18,12 @@ namespace library_reservation.Infrastructure.Repositories
             this.context = context;
         }
 
-
+        public async Task<Book> GetById(int Id)
+        {
+            var book = await context.Books.FirstOrDefaultAsync(x => x.Id == Id);
+            Console.WriteLine(book);
+            return book;
+        }
 
         public async Task<(List<Book>, int TotalRecords)> GetPaginatedBooks(PaginationDTO paginationDTO)
         {

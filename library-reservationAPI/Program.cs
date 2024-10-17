@@ -29,8 +29,8 @@ builder.Services.AddControllers(option =>
 builder.Services.AddCors(options =>
 {
     var frontendUrl = builder.Configuration.GetValue<string>("FrontendUrl");
-    options.AddDefaultPolicy(builder => 
-    { 
+    options.AddDefaultPolicy(builder =>
+    {
         builder.WithOrigins(frontendUrl).AllowAnyMethod().AllowAnyHeader();
     });
 });
@@ -52,7 +52,6 @@ await seeder.Seed();
 // Configure the HTTP request pipeline.
 
 app.UseHttpsRedirection();
-app.UseRouting();
 app.UseCors();
 
 app.UseAuthorization();

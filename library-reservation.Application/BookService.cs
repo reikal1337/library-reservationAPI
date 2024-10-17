@@ -12,6 +12,12 @@ namespace library_reservation.Application
         {
             this.bookRepository = bookRepository;
         }
+
+        public async Task<Book> GetById(int Id)
+        {
+            return await bookRepository.GetById(Id);
+        }
+
         public async Task<(List<Book>, int TotalRecords)> GetPaginatedBooks(PaginationDTO paginationDTO)
         {
 

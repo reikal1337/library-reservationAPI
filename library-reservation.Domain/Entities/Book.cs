@@ -12,7 +12,7 @@ namespace library_reservationAPI.Entities
             public string Name { get; set; } = default!;
             public string ImageSrc { get; set; } = default!;
             public int Year { get; set; }
-            public ICollection<string> Types { get; set; } = new List<string>();
+            public List<string> Types { get; set; } = new List<string>();
         }
 
 

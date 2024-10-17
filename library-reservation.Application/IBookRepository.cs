@@ -7,6 +7,7 @@ namespace library_reservation.Application
     public interface IBookRepository
     {
         Task<(List<Book>, int TotalRecords)> GetPaginatedBooks(PaginationDTO paginationDTO);
+        Task<Book> GetById(int Id);
 
     }
 }
