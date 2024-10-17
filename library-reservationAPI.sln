@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "library-reservationAPI", "library-reservationAPI\library-reservationAPI.csproj", "{0F1CE1A0-8AF3-437A-9A9B-9012B69940B8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "library-reservation.API", "library-reservationAPI\library-reservation.API.csproj", "{0F1CE1A0-8AF3-437A-9A9B-9012B69940B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "library-reservation.Domain", "library-reservation.Domain\library-reservation.Domain.csproj", "{CDA6E72C-8591-4517-95DE-BE16D87FE15E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "library-reservation.Application", "library-reservation.Application\library-reservation.Application.csproj", "{BEC516FC-F480-42AE-AB83-C7EA86FA98E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "library-reservation.Infrastructure", "library-reservation.Infrastructure\library-reservation.Infrastructure.csproj", "{76B9FA02-617D-4369-9F98-C1201014EFF7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{0F1CE1A0-8AF3-437A-9A9B-9012B69940B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F1CE1A0-8AF3-437A-9A9B-9012B69940B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F1CE1A0-8AF3-437A-9A9B-9012B69940B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDA6E72C-8591-4517-95DE-BE16D87FE15E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDA6E72C-8591-4517-95DE-BE16D87FE15E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDA6E72C-8591-4517-95DE-BE16D87FE15E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDA6E72C-8591-4517-95DE-BE16D87FE15E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEC516FC-F480-42AE-AB83-C7EA86FA98E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEC516FC-F480-42AE-AB83-C7EA86FA98E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEC516FC-F480-42AE-AB83-C7EA86FA98E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEC516FC-F480-42AE-AB83-C7EA86FA98E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76B9FA02-617D-4369-9F98-C1201014EFF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76B9FA02-617D-4369-9F98-C1201014EFF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76B9FA02-617D-4369-9F98-C1201014EFF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76B9FA02-617D-4369-9F98-C1201014EFF7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,23 +1,24 @@
 ﻿using library_reservationAPI.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Emit;
 
 namespace library_reservationAPI.Db
 {
-    public class AppDbContext: DbContext
+    internal class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
     {
-
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) 
-        {
-        }
-
-        public DbSet<Book> Books { get; set; }
+        internal DbSet<Book> Books { get; set; }
+        internal DbSet<Reservation> Reservations { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            Console.WriteLine("Testtttttttttttttttttttttt");
+
+            modelBuilder.Entity<ReservationItem>().OwnsOne(x => x.Book);
+
+            modelBuilder.Entity<Reservation>().HasMany(x => x.ReservationItems);
+
             //Papulating db with some default data.
             modelBuilder.Entity<Book>().HasData(
                 new Book { Id = 1, Name = "The Great Gatsby", ImageSrc = "https://images.thegreatestbooks.org/mett28u51a92h6yh90le1pbn8aai", Year = 1925, Type = new[] { "book" } },
@@ -32,7 +33,6 @@ namespace library_reservationAPI.Db
             
 
         }
-        public DbSet<library_reservationAPI.Entities.ReservationItem> ReservationItem { get; set; } = default!;
-        public DbSet<library_reservationAPI.Entities.Reservation> Reservation { get; set; } = default!;
+        
     }
 }

@@ -8,9 +8,8 @@ namespace library_reservationAPI.Entities
 
         public int Id { get; set; }
 
-        public int[] ItemIds { get; set; }
 
-        public ICollection<ReservationItem> ReservationItems { get; set; } = new List<ReservationItem>();
+        public List<ReservationItem> ReservationItems { get; set; } = new List<ReservationItem>();
 
         [Column(TypeName = "decimal(18, 2)")]
         public decimal  TotalPrice { get; set; }
