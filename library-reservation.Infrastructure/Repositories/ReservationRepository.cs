@@ -4,26 +4,26 @@ using library_reservationAPI.Db;
 using library_reservationAPI.DTOs;
 using library_reservationAPI.Entities;
 using Microsoft.EntityFrameworkCore;
-using System.Net.Http;
-
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace library_reservation.Infrastructure.Repositories
 {
-    public class BookRepository : IBookRepository
+    public class ReservationRepository : IReservationRepository
     {
         private readonly AppDbContext context;
 
-        public BookRepository(AppDbContext context)
+        public ReservationRepository(AppDbContext context)
         {
             this.context = context;
         }
 
-
-
-        public async Task<(List<Book>, int TotalRecords)> GetPaginatedBooks(PaginationDTO paginationDTO)
+        public async Task<(List<Reservation>, int TotalRecords)> GetPaginatedReservations(PaginationDTO paginationDTO)
         {
-
-            var queryable = context.Books.AsQueryable();
+            var queryable = context.Reservations.AsQueryable();
 
             int totalRecords = await queryable.CountAsync();
 

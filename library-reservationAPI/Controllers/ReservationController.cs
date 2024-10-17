@@ -11,11 +11,11 @@ namespace library_reservationAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BooksController : ControllerBase
+    public class ReservationController : ControllerBase
     {
         private readonly IBookService bookService;
 
-        public BooksController(IBookService bookService)
+        public ReservationController(IBookService bookService)
         {
             this.bookService = bookService;
         }

@@ -15,6 +15,7 @@ namespace library_reservation.Application
         public async Task<(List<Book>, int TotalRecords)> GetPaginatedBooks(PaginationDTO paginationDTO)
         {
 
-            return await bookRepository.GetPaginatedBooks(paginationDTO);        }
+            return await bookRepository.GetPaginatedBooks(paginationDTO);
+        }
     }
 }
