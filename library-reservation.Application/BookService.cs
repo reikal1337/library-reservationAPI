@@ -1,9 +1,6 @@
-﻿using library_reservationAPI.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using library_reservationAPI.DTOs;
+using library_reservationAPI.Entities;
+
 
 namespace library_reservation.Application
 {
@@ -15,10 +12,9 @@ namespace library_reservation.Application
         {
             this.bookRepository = bookRepository;
         }
-        public async Task<List<Book>> GetAllBooks()
+        public async Task<(List<Book>, int TotalRecords)> GetPaginatedBooks(PaginationDTO paginationDTO)
         {
-            var books = await bookRepository.GetAllBooks();
-            return books; 
-        }
+
+            return await bookRepository.GetPaginatedBooks(paginationDTO);        }
     }
 }

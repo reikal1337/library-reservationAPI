@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using library_reservationAPI.Db;
 using library_reservationAPI.Entities;
 using library_reservation.Application;
+using library_reservationAPI.DTOs;
+using library_reservationAPI.Helpers;
 
 namespace library_reservationAPI.Controllers
 {
@@ -18,9 +20,13 @@ namespace library_reservationAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Book>>> GetAllBooks()
+        public async Task<ActionResult<List<Book>>> Get([FromQuery] PaginationDTO paginationDTO)
         {
-            var books = await bookService.GetAllBooks();
+            var (books, totalRecords) = await bookService.GetPaginatedBooks(paginationDTO);
+
+            // Inserting pagination details in the header
+            await HttpContext.InsertParametersPaginationInHeader(totalRecords.ToString());
+
             return Ok(books);
         }
 

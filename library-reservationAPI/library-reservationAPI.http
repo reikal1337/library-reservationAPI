@@ -4,5 +4,9 @@ GET {{library_reservationAPI_HostAddress}}/api/books
 Accept: application/json
 Guid: {{$guid}}
 
-
 ###
+
+GET {{library_reservationAPI_HostAddress}}/api/books?page=2&recordsPerPage=5
+Accept: application/json
+Guid: {{$guid}}
+
