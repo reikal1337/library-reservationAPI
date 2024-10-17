@@ -5,6 +5,7 @@ using library_reservationAPI.DTOs;
 using library_reservationAPI.Helpers;
 
 using library_reservation.Application;
+using library_reservation.Application.DTOs;
 
 namespace library_reservationAPI.Controllers
 {
@@ -30,6 +31,14 @@ namespace library_reservationAPI.Controllers
             await HttpContext.InsertParametersPaginationInHeader(totalRecords.ToString());
 
             return Ok(reservations);
+        }
+
+        [HttpPost("get-price")]
+        public  ActionResult<decimal> GetReservationPrice(List<ReservationItemDTO> items)
+        {
+            decimal totalPrice = reservationService.GetReservationPrice(items);
+
+            return Ok();
         }
 
     }

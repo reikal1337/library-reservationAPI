@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using library_reservationAPI.Db;
 using library_reservationAPI.Entities;
 using library_reservationAPI.DTOs;
 using library_reservationAPI.Helpers;
