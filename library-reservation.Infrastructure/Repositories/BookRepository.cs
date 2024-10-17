@@ -2,22 +2,18 @@
 using library_reservationAPI.Db;
 using library_reservationAPI.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace library_reservation.Infrastructure.Repositories
 {
     public class BookRepository : IBookRepository
     {
-        //private readonly AppDbContext context;
+        private readonly AppDbContext context;
 
-        //public BookRepository(AppDbContext context)
-        //{
-        //    this.context = context;
-        //}
+        public BookRepository(AppDbContext context)
+        {
+            this.context = context;
+        }
 
 
         public static List<Book> tempBook = new List<Book>() {
@@ -25,11 +21,11 @@ namespace library_reservation.Infrastructure.Repositories
             }
         };
 
-        public List<Book> GetAllBooks()
+        public async Task<List<Book>> GetAllBooks()
         {
-            //var cBooks = context.Books.ToListAsync();
+            var books = await context.Books.ToListAsync();
 
-            return tempBook;
+            return books;
         }
     }
 }

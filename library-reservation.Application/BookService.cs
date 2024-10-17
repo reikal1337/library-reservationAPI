@@ -15,9 +15,9 @@ namespace library_reservation.Application
         {
             this.bookRepository = bookRepository;
         }
-        public List<Book> GetAllBooks()
+        public async Task<List<Book>> GetAllBooks()
         {
-            var books = bookRepository.GetAllBooks();
+            var books = await bookRepository.GetAllBooks();
             return books; 
         }
     }

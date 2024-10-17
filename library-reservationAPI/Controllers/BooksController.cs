@@ -18,9 +18,9 @@ namespace library_reservationAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Book>> GetAllBooks()
+        public async Task<ActionResult<IEnumerable<Book>>> GetAllBooks()
         {
-            var books = bookService.GetAllBooks();
+            var books = await bookService.GetAllBooks();
             return Ok(books);
         }
 

@@ -1,6 +1,7 @@
 using library_reservation.Infrastructure.Extensions;
 using library_reservation.Application;
 using library_reservation.Infrastructure.Repositories;
+using library_reservation.Infrastructure.Seeders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,14 +26,11 @@ builder.Services.AddControllers();
 
 var app = builder.Build();
 
-//using (var scope = app.Services.CreateScope())
-//{
-//    var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
-//    // Ensures db data population.
-//    context.Database.EnsureCreated();
-//}
-
+//Seeding db with some Book data.
+var scope = app.Services.CreateScope();
+var seeder = scope.ServiceProvider.GetRequiredService<IBookSeeder>();
+await seeder.Seed();
 
 
 

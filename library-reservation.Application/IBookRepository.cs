@@ -9,7 +9,7 @@ namespace library_reservation.Application
 {
     public interface IBookRepository
     {
-        List<Book> GetAllBooks();
+        Task<List<Book>> GetAllBooks();
 
     }
 }

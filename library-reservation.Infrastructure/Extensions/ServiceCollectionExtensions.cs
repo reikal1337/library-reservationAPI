@@ -1,4 +1,5 @@
-﻿using library_reservationAPI.Db;
+﻿using library_reservation.Infrastructure.Seeders;
+using library_reservationAPI.Db;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +17,8 @@ namespace library_reservation.Infrastructure.Extensions
             services.AddDbContext<AppDbContext>(options =>
                 options.UseInMemoryDatabase(connectionString)
                 );
+
+            services.AddScoped<IBookSeeder, BookSeeder>();
         }
     }
 }
