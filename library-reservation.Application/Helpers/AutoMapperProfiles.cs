@@ -7,7 +7,10 @@ namespace library_reservationAPI.Helpers
     public class AutoMapperProfiles: Profile
     {
         public AutoMapperProfiles() { 
-             CreateMap<Book,BookDTO>().ReverseMap();
+            CreateMap<Book,BookDTO>().ReverseMap();
+           
+            CreateMap<CreateReservationDTO, ReservationItemPricingDTO>();
+            CreateMap<ReservationItemPricingDTO, Reservation>();
         }
     }
 }

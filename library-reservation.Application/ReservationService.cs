@@ -1,4 +1,5 @@
-﻿using library_reservation.Application.DTOs;
+﻿using AutoMapper;
+using library_reservation.Application.DTOs;
 using library_reservationAPI.DTOs;
 using library_reservationAPI.Entities;
 using System.Runtime.ConstrainedExecution;
@@ -8,10 +9,12 @@ namespace library_reservation.Application
     public class ReservationService : IReservationService
     {
         private readonly IReservationRepository reservationRepository;
+        private readonly IMapper mapper;
 
-        public ReservationService(IReservationRepository reservationRepository) 
+        public ReservationService(IReservationRepository reservationRepository, IMapper mapper) 
         {
             this.reservationRepository = reservationRepository;
+            this.mapper = mapper;
         }
         public async Task<(List<Reservation>, int TotalRecords)> GetPaginatedReservations(GetQueryDTO paginationDTO)
         {
@@ -22,8 +25,6 @@ namespace library_reservation.Application
         //• Discount is applied: > 3 days – 10% off; > 10 days – 20% off.
         //• Service fee: €3 per reservation, applied to all bookings.
         //• Quick pick up: €5 per reservation if selected.
-
-
         private const decimal BOOK_PER_DAY_PRICE = 2m;
         private const decimal AUDIOBOOK_PER_DAY_PRICE = 3m;
         private const decimal DISCOUNT_3D = 0.9m; //10% discount
@@ -74,10 +75,14 @@ namespace library_reservation.Application
             }
         }
 
-        public Task CreateReservation(CreateReservationDTO createReservationDTO)
+        public async Task CreateReservation(CreateReservationDTO createReservationDTO)
         {
-            
+            var prisingItems = mapper.Map<List<ReservationItemPricingDTO>>(createReservationDTO);
+            var totalPrice = GetReservationPrice(prisingItems);
+            var reservation = mapper.Map<Reservation>(prisingItems);
 
+            reservation.TotalPrice = totalPrice;
+            await reservationRepository.CreateReservation(reservation);
         }
     }
 }

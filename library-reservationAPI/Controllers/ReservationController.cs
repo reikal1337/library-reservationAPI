@@ -6,6 +6,7 @@ using library_reservationAPI.Helpers;
 
 using library_reservation.Application;
 using library_reservation.Application.DTOs;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace library_reservationAPI.Controllers
 {
@@ -23,7 +24,7 @@ namespace library_reservationAPI.Controllers
 
 
         [HttpGet]
-        public async Task<ActionResult<List<Book>>> Get([FromQuery] GetQueryDTO paginationDTO)
+        public async Task<ActionResult<List<BookDTO>>> Get([FromQuery] GetQueryDTO paginationDTO)
         {
             var ( reservations, totalRecords) = await reservationService.GetPaginatedReservations(paginationDTO);
 
@@ -40,8 +41,9 @@ namespace library_reservationAPI.Controllers
             {
                 return BadRequest(ModelState); // Return validation errors
             }
-            await;
-            return null;
+             await reservationService.CreateReservation(createReservationDTO);
+
+            return Created();
         }
 
 
