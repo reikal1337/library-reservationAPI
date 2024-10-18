@@ -69,9 +69,6 @@ namespace library_reservationAPI.Controllers
        
             decimal totalPrice = reservationService.GetReservationPrice(items);
 
-            Console.WriteLine($"Price: {totalPrice}");
-
-
             return Ok(totalPrice);
         }
 
