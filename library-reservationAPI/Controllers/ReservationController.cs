@@ -41,6 +41,10 @@ namespace library_reservationAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
+            //if(createReservationDTO.Items.Count() == 0)
+            //{
+            //    return BadRequest();
+            //}
              await reservationService.CreateReservation(createReservationDTO);
 
             return Created();
