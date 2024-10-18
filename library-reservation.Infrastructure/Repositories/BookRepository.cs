@@ -21,7 +21,6 @@ namespace library_reservation.Infrastructure.Repositories
         public async Task<Book> GetById(int Id)
         {
             var book = await context.Books.FirstOrDefaultAsync(x => x.Id == Id);
-            Console.WriteLine(book);
             return book;
         }
 
@@ -30,12 +29,12 @@ namespace library_reservation.Infrastructure.Repositories
 
             var queryable = context.Books.AsQueryable();
 
-            //Apply search
+            //Search
             queryable = queryable.SearchBooks(getQueryDTO);
 
             int totalRecords = await queryable.CountAsync();
 
-            //Apply paggination.
+            //Paggination.
             var books = await queryable
                         .Paginate(getQueryDTO)
                         .ToListAsync();

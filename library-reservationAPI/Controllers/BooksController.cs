@@ -40,7 +40,7 @@ namespace library_reservationAPI.Controllers
         {
             var (books, totalRecords) = await bookService.GetPaginatedBooks(getQueryDTO);
 
-            // Inserting pagination details in the headerreate Reservation.
+            // Inserting pagination details in the header.
             await HttpContext.InsertParametersPaginationInHeader(totalRecords.ToString());
 
             return Ok(books);

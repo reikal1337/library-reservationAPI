@@ -19,21 +19,24 @@ namespace library_reservation.Infrastructure.Repositories
 
         public  async Task CreateReservation(Reservation reservation)
         {
-              await context.Reservations.AddAsync(reservation);
-              await context.SaveChangesAsync();
+            Console.WriteLine(reservation);
+            await context.Reservations.AddAsync(reservation);
+            await context.SaveChangesAsync();
         }
 
         public async Task<(List<Reservation>, int TotalRecords)> GetPaginatedReservations(GetQueryDTO getQueryDTO)
         {
-            var queryable = context.Reservations.AsQueryable();
+            var queryable = context.Reservations.Include(r => r.ReservationItems)
+                .ThenInclude(ri => ri.Book)
+                .AsQueryable();
 
             int totalRecords = await queryable.CountAsync();
 
-            var books = await queryable
+            var reservations = await queryable
                         .Paginate(getQueryDTO)
                         .ToListAsync();
 
-            return (books, totalRecords);
+            return (reservations, totalRecords);
         }
     }
 }

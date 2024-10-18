@@ -3,6 +3,7 @@ using library_reservation.Application.DTOs;
 using library_reservationAPI.DTOs;
 using library_reservationAPI.Entities;
 using System.Runtime.ConstrainedExecution;
+using System.Xml;
 
 namespace library_reservation.Application
 {
@@ -21,6 +22,9 @@ namespace library_reservation.Application
             return await reservationRepository.GetPaginatedReservations(paginationDTO);
         }
 
+
+                            //BuessnessLogic
+
         //• Reservation sum is determined by type: Book(€2/day), Audiobook(€3/day).
         //• Discount is applied: > 3 days – 10% off; > 10 days – 20% off.
         //• Service fee: €3 per reservation, applied to all bookings.
@@ -31,7 +35,7 @@ namespace library_reservation.Application
         private const decimal DISCOUNT_10D = 0.8m; //20% discount
         private const decimal SERVICE_FEE = 3m;
         private const decimal QUICK_PICK_UP_FEE = 5m;
-        public decimal GetReservationPrice(List<ReservationItemPricingDTO> items)
+        public decimal GetReservationPrice(List<ReservationItemDTO> items)
         {
             if (items.Count() <= 0) return 0;
             decimal totalPrice = 0m;
@@ -49,7 +53,7 @@ namespace library_reservation.Application
             return totalPrice + SERVICE_FEE;
         }
 
-        private decimal CalculateItemPrice(ReservationItemPricingDTO item) {
+        private decimal CalculateItemPrice(ReservationItemDTO item) {
 
             decimal pricePerDay = item.Type.ToLower() == "book" ? BOOK_PER_DAY_PRICE : AUDIOBOOK_PER_DAY_PRICE;
             decimal regularPrice = pricePerDay * item.Days;
@@ -77,12 +81,22 @@ namespace library_reservation.Application
 
         public async Task CreateReservation(CreateReservationDTO createReservationDTO)
         {
-            var prisingItems = mapper.Map<List<ReservationItemPricingDTO>>(createReservationDTO);
-            var totalPrice = GetReservationPrice(prisingItems);
-            var reservation = mapper.Map<Reservation>(prisingItems);
+            var reservation = mapper.Map<Reservation>(createReservationDTO);
+            if (reservation == null) {
+                return;
+            }
 
+            if (reservation.ReservationItems == null || !reservation.ReservationItems.Any())
+            {
+                throw new InvalidOperationException("ReservationItems are empty after mapping.");
+            }
+
+            var totalPriceItems = mapper.Map<List<ReservationItemDTO>>(reservation.ReservationItems);
+
+            var totalPrice = GetReservationPrice(totalPriceItems);
             reservation.TotalPrice = totalPrice;
-            await reservationRepository.CreateReservation(reservation);
+          
+            await reservationRepository.CreateReservation(reservation); 
         }
     }
 }

@@ -10,5 +10,10 @@ namespace library_reservationAPI.Entities
         public string Type { get; set; } = default!;
         public int Days { get; set; }
         public bool QuickPickUp { get; set; }
+
+        public int ReservationId { get; set; }
+        public virtual Book Book { get; set; } = default!;
     }
+
+
 }

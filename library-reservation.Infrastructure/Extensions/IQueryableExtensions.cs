@@ -7,7 +7,7 @@ namespace library_reservation.Infrastructure.Extensions
 {
     public static class IQueryableExtensions
     {
-
+        //Pagination for db queries.
         public static IQueryable<T> Paginate<T>(this IQueryable<T> queryable, GetQueryDTO getQueryDTO)
         {
             return queryable.Skip((getQueryDTO.Page - 1) * getQueryDTO.RecordsPerPage)

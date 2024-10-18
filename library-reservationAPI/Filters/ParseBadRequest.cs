@@ -10,7 +10,7 @@ namespace NET_core_api_tut.Filters
         public void OnActionExecuting(ActionExecutingContext context)
         {
         }
-
+        //On BadRequest errors trims error messages and puts it in a better format for front end.
         public void OnActionExecuted(ActionExecutedContext context)
         {
             var result = context.Result as IStatusCodeActionResult;

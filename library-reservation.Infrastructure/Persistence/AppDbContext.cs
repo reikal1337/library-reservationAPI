@@ -12,27 +12,29 @@ namespace library_reservationAPI.Db
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
 
+            //modelBuilder.Entity<Reservation>()
+            //    .HasMany(r => r.ReservationItems)
+            //    .WithOne()
+            //    .HasForeignKey(ri => ri.ReservationId) 
+            //    .OnDelete(DeleteBehavior.Cascade);
 
-            //modelBuilder.Entity<ReservationItem>().OwnsOne(x => x.Book);
+            //modelBuilder.Entity<ReservationItem>()
+            //    .HasOne<Book>()
+            //    .WithMany()
+            //    .HasForeignKey(ri => ri.BookId);
 
             modelBuilder.Entity<Reservation>()
                 .HasMany(r => r.ReservationItems)
                 .WithOne()
-                .HasForeignKey("ReservationId");
+                .HasForeignKey(ri => ri.ReservationId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<ReservationItem>()
-                .HasOne<Book>()
-                .WithMany()
+                .HasOne<Book>(ri => ri.Book)
+                .WithMany() 
                 .HasForeignKey(ri => ri.BookId);
-;
 
-
-
-            modelBuilder.Entity<Reservation>().HasMany(x => x.ReservationItems);
-
-            
 
         }
         

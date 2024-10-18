@@ -4,6 +4,8 @@ using library_reservation.Infrastructure.Seeders;
 using NET_core_api_tut.Filters;
 using NET_core_api_tut.APIBehavior;
 using library_reservation.Application;
+using library_reservationAPI.Helpers;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,7 +28,7 @@ builder.Services.AddControllers(option =>
 ).ConfigureApiBehaviorOptions(BadRequestsBahavior.Parse);
 
 
-builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
 //CORS config
 builder.Services.AddCors(options =>

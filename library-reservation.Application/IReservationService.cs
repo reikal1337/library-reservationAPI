@@ -9,7 +9,7 @@ namespace library_reservation.Application
     {
         Task<(List<Reservation>, int TotalRecords)> GetPaginatedReservations(GetQueryDTO paginationDTO);
 
-        decimal GetReservationPrice(List<ReservationItemPricingDTO> items);
+        decimal GetReservationPrice(List<ReservationItemDTO> items);
 
         Task CreateReservation(CreateReservationDTO createReservationDTO);
 

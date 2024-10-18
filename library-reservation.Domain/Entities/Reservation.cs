@@ -10,4 +10,5 @@ namespace library_reservationAPI.Entities
         [Column(TypeName = "decimal(18, 2)")]
         public decimal TotalPrice { get; set; }
     }
+
 }

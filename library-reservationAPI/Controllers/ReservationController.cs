@@ -39,7 +39,7 @@ namespace library_reservationAPI.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState); // Return validation errors
+                return BadRequest(ModelState);
             }
              await reservationService.CreateReservation(createReservationDTO);
 
@@ -48,7 +48,7 @@ namespace library_reservationAPI.Controllers
 
 
         [HttpPost("get-price")]
-        public  ActionResult<decimal> GetReservationPrice(List<ReservationItemPricingDTO> items)
+        public  ActionResult<decimal> GetReservationPrice(List<ReservationItemDTO> items)
         {
 
 
