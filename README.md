@@ -42,7 +42,7 @@ This project follows **Clean Architecture** principles, ensuring clear separatio
 
 -   **Dependency Injection**: Used throughout the project for repositories and services, ensuring loosely coupled components.
 -   **AutoMapper**: Handles mapping between entities and DTOs, simplifying object transformation across layers.
-- 
+  
 ### Known Limitations
 -   **Unit Testing**: Unit tests have not been implemented for the backend.
 -   **In-Memory Database**: The current use of an in-memory database limits the persistence beyond runtime, and it is not suitable for production.
