@@ -34,11 +34,27 @@ namespace library_reservationAPI.Controllers
         }
 
         [HttpPost("get-price")]
-        public  ActionResult<decimal> GetReservationPrice(List<ReservationItemDTO> items)
+        public  ActionResult<decimal> GetReservationPrice(List<ReservationItemPricingDTO> items)
         {
+
+
+            if (items == null || !items.Any())
+            {
+                ModelState.AddModelError("Items", "The list of items cannot be empty.");
+                return BadRequest(ModelState);
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+       
             decimal totalPrice = reservationService.GetReservationPrice(items);
 
-            return Ok();
+            Console.WriteLine($"Price: {totalPrice}");
+
+
+            return Ok(totalPrice);
         }
 
     }

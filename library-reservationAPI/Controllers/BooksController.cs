@@ -45,7 +45,6 @@ namespace library_reservationAPI.Controllers
         [HttpGet("{Id:int}")]
         public async Task<ActionResult<Book>> GetById(int Id)
         {
-            Console.WriteLine(Id);
             var books = await bookService.GetById(Id);
 
             if (books == null)

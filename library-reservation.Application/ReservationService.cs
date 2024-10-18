@@ -30,8 +30,9 @@ namespace library_reservation.Application
         private const decimal DISCOUNT_10D = 0.8m; //20% discount
         private const decimal SERVICE_FEE = 3m;
         private const decimal QUICK_PICK_UP_FEE = 5m;
-        public decimal GetReservationPrice(List<ReservationItemDTO> items)
+        public decimal GetReservationPrice(List<ReservationItemPricingDTO> items)
         {
+            if (items.Count() <= 0) return 0;
             decimal totalPrice = 0m;
             foreach (var item in items) 
             {
@@ -47,7 +48,7 @@ namespace library_reservation.Application
             return totalPrice + SERVICE_FEE;
         }
 
-        private decimal CalculateItemPrice(ReservationItemDTO item) {
+        private decimal CalculateItemPrice(ReservationItemPricingDTO item) {
 
             decimal pricePerDay = item.Type.ToLower() == "book" ? BOOK_PER_DAY_PRICE : AUDIOBOOK_PER_DAY_PRICE;
             decimal regularPrice = pricePerDay * item.Days;

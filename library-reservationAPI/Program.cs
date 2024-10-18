@@ -11,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 //Infrastructure init.
 builder.Services.AddInfrastructure(builder.Configuration);
 
+builder.Services.AddResponseCaching();
 
 builder.Services.AddScoped<IBookService, BookService>();
 builder.Services.AddScoped<IBookRepository, BookRepository>();
@@ -24,6 +25,8 @@ builder.Services.AddControllers(option =>
     }
 ).ConfigureApiBehaviorOptions(BadRequestsBahavior.Parse);
 
+
+builder.Services.AddAutoMapper(typeof(Program));
 
 //CORS config
 builder.Services.AddCors(options =>
