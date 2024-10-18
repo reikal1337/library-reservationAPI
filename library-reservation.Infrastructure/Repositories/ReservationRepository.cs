@@ -4,11 +4,7 @@ using library_reservationAPI.Db;
 using library_reservationAPI.DTOs;
 using library_reservationAPI.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace library_reservation.Infrastructure.Repositories
 {
@@ -21,14 +17,14 @@ namespace library_reservation.Infrastructure.Repositories
             this.context = context;
         }
 
-        public async Task<(List<Reservation>, int TotalRecords)> GetPaginatedReservations(PaginationDTO paginationDTO)
+        public async Task<(List<Reservation>, int TotalRecords)> GetPaginatedReservations(GetQueryDTO getQueryDTO)
         {
             var queryable = context.Reservations.AsQueryable();
 
             int totalRecords = await queryable.CountAsync();
 
             var books = await queryable
-                        .Paginate(paginationDTO)
+                        .Paginate(getQueryDTO)
                         .ToListAsync();
 
             return (books, totalRecords);

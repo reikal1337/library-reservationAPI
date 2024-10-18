@@ -56,9 +56,9 @@ namespace library_reservationAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Book>>> Get([FromQuery] PaginationDTO paginationDTO)
+        public async Task<ActionResult<List<Book>>> Get([FromQuery] GetQueryDTO getQueryDTO)
         {
-            var (books, totalRecords) = await bookService.GetPaginatedBooks(paginationDTO);
+            var (books, totalRecords) = await bookService.GetPaginatedBooks(getQueryDTO);
 
             // Inserting pagination details in the header
             await HttpContext.InsertParametersPaginationInHeader(totalRecords.ToString());

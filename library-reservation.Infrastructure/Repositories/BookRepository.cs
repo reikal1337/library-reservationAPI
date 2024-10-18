@@ -25,15 +25,19 @@ namespace library_reservation.Infrastructure.Repositories
             return book;
         }
 
-        public async Task<(List<Book>, int TotalRecords)> GetPaginatedBooks(PaginationDTO paginationDTO)
+        public async Task<(List<Book>, int TotalRecords)> GetPaginatedBooks(GetQueryDTO getQueryDTO)
         {
 
             var queryable = context.Books.AsQueryable();
 
+            //Apply search
+            queryable = queryable.SearchBooks(getQueryDTO);
+
             int totalRecords = await queryable.CountAsync();
 
+            //Apply paggination.
             var books = await queryable
-                        .Paginate(paginationDTO)
+                        .Paginate(getQueryDTO)
                         .ToListAsync();
 
             return (books, totalRecords);

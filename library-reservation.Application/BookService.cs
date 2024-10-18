@@ -18,10 +18,10 @@ namespace library_reservation.Application
             return await bookRepository.GetById(Id);
         }
 
-        public async Task<(List<Book>, int TotalRecords)> GetPaginatedBooks(PaginationDTO paginationDTO)
+        public async Task<(List<Book>, int TotalRecords)> GetPaginatedBooks(GetQueryDTO getQueryDTO)
         {
 
-            return await bookRepository.GetPaginatedBooks(paginationDTO);
+            return await bookRepository.GetPaginatedBooks(getQueryDTO);
         }
     }
 }

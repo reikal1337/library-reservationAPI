@@ -13,7 +13,7 @@ namespace library_reservation.Application
         {
             this.reservationRepository = reservationRepository;
         }
-        public async Task<(List<Reservation>, int TotalRecords)> GetPaginatedReservations(PaginationDTO paginationDTO)
+        public async Task<(List<Reservation>, int TotalRecords)> GetPaginatedReservations(GetQueryDTO paginationDTO)
         {
             return await reservationRepository.GetPaginatedReservations(paginationDTO);
         }

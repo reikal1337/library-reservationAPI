@@ -23,7 +23,7 @@ namespace library_reservationAPI.Controllers
 
 
         [HttpGet]
-        public async Task<ActionResult<List<Book>>> Get([FromQuery] PaginationDTO paginationDTO)
+        public async Task<ActionResult<List<Book>>> Get([FromQuery] GetQueryDTO paginationDTO)
         {
             var ( reservations, totalRecords) = await reservationService.GetPaginatedReservations(paginationDTO);
 

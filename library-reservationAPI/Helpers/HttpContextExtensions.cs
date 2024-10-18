@@ -12,7 +12,7 @@ namespace library_reservationAPI.Helpers
                 throw new ArgumentException(nameof(httpContext));
             }
 
-            httpContext.Response.Headers.Add("totalAmountOfRecods", totalRecords); 
+            httpContext.Response.Headers.Add("totalAmountOfRecords", totalRecords); 
         }
 
         

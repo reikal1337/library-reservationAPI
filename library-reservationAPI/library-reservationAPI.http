@@ -12,7 +12,7 @@ Guid: {{$guid}}
 
 ###
 
-GET {{library_reservationAPI_HostAddress}}/api/books?page=2&recordsPerPage=5
+GET {{library_reservationAPI_HostAddress}}/api/books?page=1&recordsPerPage=5&type=books&year=1922
 Accept: application/json
 Guid: {{$guid}}
 

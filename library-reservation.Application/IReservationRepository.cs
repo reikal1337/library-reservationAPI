@@ -6,7 +6,7 @@ namespace library_reservation.Application
 {
     public interface IReservationRepository
     {
-        Task<(List<Reservation>, int TotalRecords)> GetPaginatedReservations(PaginationDTO paginationDTO);
+        Task<(List<Reservation>, int TotalRecords)> GetPaginatedReservations(GetQueryDTO getQueryDTO);
 
     }
 }
