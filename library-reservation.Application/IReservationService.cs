@@ -11,5 +11,7 @@ namespace library_reservation.Application
 
         decimal GetReservationPrice(List<ReservationItemPricingDTO> items);
 
+        Task CreateReservation(CreateReservationDTO createReservationDTO);
+
     }
 }

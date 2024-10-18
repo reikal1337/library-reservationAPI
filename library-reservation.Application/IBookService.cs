@@ -1,13 +1,13 @@
-﻿using library_reservationAPI.DTOs;
-using library_reservationAPI.Entities;
+﻿using library_reservation.Application.DTOs;
+using library_reservationAPI.DTOs;
 
 
 namespace library_reservation.Application
 {
     public interface IBookService
     {
-        Task<(List<Book>, int TotalRecords)> GetPaginatedBooks(GetQueryDTO paginationDTO);
-        Task<Book> GetById(int Id);
+        Task<(List<BookDTO>, int TotalRecords)> GetPaginatedBooks(GetQueryDTO paginationDTO);
+        Task<BookDTO> GetById(int Id);
 
     }
 }

@@ -74,6 +74,10 @@ namespace library_reservation.Application
             }
         }
 
+        public Task CreateReservation(CreateReservationDTO createReservationDTO)
+        {
+            
 
+        }
     }
 }

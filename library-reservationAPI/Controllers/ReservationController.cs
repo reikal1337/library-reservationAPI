@@ -33,6 +33,18 @@ namespace library_reservationAPI.Controllers
             return Ok(reservations);
         }
 
+        [HttpPost]
+        public async Task<ActionResult> CreateReservation([FromBody] CreateReservationDTO createReservationDTO)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState); // Return validation errors
+            }
+            await;
+            return null;
+        }
+
+
         [HttpPost("get-price")]
         public  ActionResult<decimal> GetReservationPrice(List<ReservationItemPricingDTO> items)
         {
